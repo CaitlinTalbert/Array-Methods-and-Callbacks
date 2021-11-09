@@ -41,12 +41,19 @@ Use the higher-order function called getYears to do the following:
 1. Receive an array
 2. Receive a callback function getFinals from task 2 
 3. Return an array called years containing all of the years in the getFinals data set*/
-
-function getYears(/* code here */) {
-    /* code here */
+//two parameters, use map results over getFinals 
+/*function getYears(array, getFinalsCB) {
+    const years = getFinalsCB.map(function(item) {
+        return item.Years; 
+    })
+    return years; 
 }
+console.log('task 3', getYears(fifaData, getFinalsCB)); */
 
-
+function getYears(array, getFinalsCB) {
+    return getFinalsCB(array).map(item => item.Year); 
+}
+console.log('task 3', getYears(fifaData, getFinals));
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 4: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
 Use the higher-order function getWinners to do the following:  

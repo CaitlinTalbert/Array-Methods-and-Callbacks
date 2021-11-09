@@ -26,11 +26,14 @@ Use getFinals to do the following:
 
 hint - you should be looking at the stage key inside of the objects
 */
-
-function getFinals(/* code here */) {
-   /* code here */
+//receive an array as a parameter, this will be fifData, use filter for stage === final
+function getFinals(data) {
+   const finalStage = data.filter(function(item) {
+       return item.Stage === 'Final'; 
+   })
+   return finalStage; 
 }
-
+console.log('task 2', getFinals(fifaData)); 
 
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 3: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀

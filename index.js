@@ -1,3 +1,4 @@
+const { STRING_UNARY_OPERATORS } = require('@babel/types');
 const { fifaData } = require('./fifa.js')
 
 // ⚽️ M  V P ⚽️ //
@@ -86,13 +87,20 @@ Use the higher-order function getWinnersByYear to do the following:
 4. Receive a callback function getWinners from task 4
 5. Return an array of strings that say "In {year}, {country} won the world cup!" 
 
-hint: the strings returned need to exactly match the string in step 4.
+hint: the strings returned need to exactly match the string in step 5.
  */
+//4 parameters, use map, map over 1 array and grab each item, use index to grab item in other array
+function getWinnersByYear(array, getFinalsCB, getYearsCB, getWinnersCB) {
+    const winners = getWinnersCB(array, getFinalsCB); 
+    const years = getYearsCB(array, getFinalsCB); 
 
-function getWinnersByYear(/* code here */) {
-    /* code here */
+    const string = winners.map(function(item, index){
+        return `In ${years[index]}, ${item} won the world cup!`;
+    }); 
+    return string; 
+
 }
-
+console.log('task 5', getWinnersByYear(fifaData, getFinals, getYears, getWinners)); 
 
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 6: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
@@ -105,10 +113,13 @@ Use the higher order function getAverageGoals to do the following:
  Example of invocation: getAverageGoals(getFinals(fifaData));
 */
 
-function getAverageGoals(/* code here */) {
-   /* code here */
+function getAverageGoals(getFinalsCB) {
+   const averageGoals = getFinalsCB.reduce(function(acc, item){
+    return acc + item['Home Team Goals'] + ["Away Team Goals"];
+   },0);
+   return (averageGoals / getFinalsCB.length).toFixed(2); 
 }
-
+console.log(getAverageGoals(getFinals(fifaData))); 
 
 
 
